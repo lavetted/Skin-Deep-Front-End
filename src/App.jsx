@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import ProductsPage from "./pages/ProductsPage";
-import ProductDetailsPage from "./pages/ProductDetailsPage";
-import CartPage from "./pages/CartPage";
-import AdminProductsPage from "./pages/AdminProductsPage";
+import ProductsPage from "./pages/ProductsPage.jsx";
+import ProductDetailsPage from "./pages/ProductDetailsPage.jsx";
+import CartPage from "./pages/CartPage.jsx";
+import AdminProductsPage from "./pages/AdminProductsPage.jsx";
 import "./App.css";
 
 function App() {
