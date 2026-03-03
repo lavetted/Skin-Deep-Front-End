@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import API from "../services/api.jsx";
 
+import { Link } from "react-router-dom";
+
+<Link to={`/products/${product._id}`}>
+  <img src={product.imageUrl} width="150" />
+  <h3>{product.name}</h3>
+</Link>;
+
 function ProductsPage() {
   const [products, setProducts] = useState([]);
 
