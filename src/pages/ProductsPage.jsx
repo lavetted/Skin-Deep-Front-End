@@ -8,7 +8,7 @@ function ProductsPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await API.get("/products");
-      setProducts(response.data);
+      setProducts(response.data.products);
     };
 
     fetchProducts();
@@ -25,18 +25,19 @@ function ProductsPage() {
           gap: "20px",
         }}
       >
-        {products.map((product) => (
-          <div
-            key={product._id}
-            style={{ border: "1px solid #ccc", padding: "10px" }}
-          >
-            <Link to={`/products/${product._id}`}>
-              <img src={product.imageUrl} width="150" />
-              <h3>{product.name}</h3>
-            </Link>
-            <p>${product.price}</p>
-          </div>
-        ))}
+        {Array.isArray(products) &&
+          products.map((product) => (
+            <div
+              key={product._id}
+              style={{ border: "1px solid #ccc", padding: "10px" }}
+            >
+              <Link to={`/products/${product._id}`}>
+                <img src={product.imageUrl} width="150" />
+                <h3>{product.name}</h3>
+              </Link>
+              <p>${product.price}</p>
+            </div>
+          ))}
       </div>
     </div>
   );
