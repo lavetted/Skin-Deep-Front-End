@@ -8,7 +8,7 @@ function ProductsPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await API.get("/products");
-      setProducts(response.data.products);
+      setProducts(response.data);
     };
 
     fetchProducts();
