@@ -1,10 +1,12 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import API from "../services/api";
+import { useEffect, useState, useContext } from "react";
+import API from "../services/api.jsx";
+import { CartContext } from "../context/CartContext.jsx";
 
 function ProductDetailsPage() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -23,6 +25,7 @@ function ProductDetailsPage() {
       <h1>{product.name}</h1>
       <p>{product.description}</p>
       <h2>${product.price}</h2>
+      <button onClick={() => addToCart(product._id)}>Add to Cart</button>
     </div>
   );
 }
