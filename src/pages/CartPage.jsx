@@ -1,30 +1,23 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext.jsx";
+import CartItem from "../components/CartItem.jsx";
 
 function CartPage() {
   const { items, updateQuantity, removeFromCart } = useContext(CartContext);
 
-  const total = items.reduce((acc, item) => {
-    return acc + item.productId.price * item.quantity;
-  }, 0);
+  const total = items.reduce(
+    (acc, item) => acc + item.product.price * item.quantity,
+    0,
+  );
+
+  if (!items.length) return <p>Your cart is empty</p>;
 
   return (
     <div>
       <h1>Your Cart</h1>
 
       {items.map((item) => (
-        <div key={item._id} style={{ marginBottom: "20px" }}>
-          <h3>{item.productId.name}</h3>
-          <p>${item.productId.price}</p>
-
-          <input
-            type="number"
-            value={item.quantity}
-            onChange={(e) => updateQuantity(item._id, Number(e.target.value))}
-          />
-
-          <button onClick={() => removeFromCart(item._id)}>Remove</button>
-        </div>
+        <CartItem key={item._id} item={item} />
       ))}
 
       <h2>Total: ${total.toFixed(2)}</h2>

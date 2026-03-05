@@ -14,6 +14,15 @@ function ProductsPage() {
     fetchProducts();
   }, []);
 
+  const handleAddToCart = async (productId) => {
+    try {
+      await API.post("/cart", { productId });
+      alert("Added to cart!");
+    } catch (err) {
+      alert("Please login first.");
+    }
+  };
+
   return (
     <div>
       <h1>All Products</h1>
@@ -36,6 +45,9 @@ function ProductsPage() {
                 <h3>{product.name}</h3>
               </Link>
               <p>${product.price}</p>
+              <button onClick={() => handleAddToCart(product._id)}>
+                Add to Cart
+              </button>
             </div>
           ))}
       </div>
