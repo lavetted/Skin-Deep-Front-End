@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import API from "../services/api.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function ProductsPage() {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -17,9 +18,11 @@ function ProductsPage() {
   const handleAddToCart = async (productId) => {
     try {
       await API.post("/cart", { productId });
+
       alert("Added to cart!");
     } catch (err) {
       alert("Please login first.");
+      navigate("/login");
     }
   };
 
@@ -44,7 +47,9 @@ function ProductsPage() {
                 <img src={product.imageUrl} width="150" />
                 <h3>{product.name}</h3>
               </Link>
+
               <p>${product.price}</p>
+
               <button onClick={() => handleAddToCart(product._id)}>
                 Add to Cart
               </button>

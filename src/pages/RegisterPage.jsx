@@ -3,50 +3,41 @@ import API from "../services/api.jsx";
 import { useNavigate } from "react-router-dom";
 
 function RegisterPage() {
-  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
 
     try {
-      await API.post("/auth/register", form);
-
-      // auto login
-      const loginRes = await API.post("/auth/login", {
-        email: form.email,
-        password: form.password,
+      const res = await API.post("/auth/register", {
+        name,
+        email,
+        password,
       });
 
-      localStorage.setItem("token", loginRes.data.token);
+      // auto login using returned token
+      localStorage.setItem("token", res.data.token);
 
       navigate("/products");
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.error("Registration failed", error);
     }
   };
 
   return (
     <form onSubmit={handleRegister}>
-      <input
-        placeholder="Name"
-        onChange={(e) => setForm({ ...form, name: e.target.value })}
-      />
+      <input placeholder="Name" onChange={(e) => setName(e.target.value)} />
 
-      <input
-        placeholder="Email"
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-      />
+      <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
 
       <input
         type="password"
         placeholder="Password"
-        onChange={(e) => setForm({ ...form, password: e.target.value })}
+        onChange={(e) => setPassword(e.target.value)}
       />
 
       <button>Register</button>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api.jsx";
 
@@ -7,22 +7,36 @@ function LoginPage() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      navigate("/products");
+    }
+  }, []);
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const res = await API.post("/auth/login", {
-      email,
-      password,
-    });
+    try {
+      const res = await API.post("/auth/login", {
+        email,
+        password,
+      });
 
-    localStorage.setItem("token", res.data.token);
+      localStorage.setItem("token", res.data.token);
 
-    navigate("/products");
+      navigate("/products");
+    } catch (error) {
+      console.error("Login failed", error);
+      alert("Invalid login");
+    }
   };
 
   return (
     <>
       <h1>Login</h1>
+
       <form onSubmit={handleLogin}>
         <input
           type="email"

@@ -6,10 +6,12 @@ import CartPage from "./pages/CartPage.jsx";
 import Navbar from "./components/Navbar.jsx";
 import ProtectedRoute from "./routes/protectedRoute.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
+import CheckoutPage from "./pages/CheckoutPage.jsx";
+import OrdersPage from "./pages/OrdersPage.jsx";
+import HomePage from "./pages/HomePage.jsx";
 import "./App.css";
 
 function App() {
-
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -24,17 +26,22 @@ function App() {
 
       <Routes>
         {/* Home */}
-        <Route path="/" element={<ProductsPage />} />
+        <Route path="/" element={<HomePage />} />
+
+        {/* Products */}
+
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/products/:id" element={<ProductDetailsPage />} />
 
         {/* Login */}
         <Route path="/login" element={<LoginPage />} />
 
-        {/* Products */}
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/products/:id" element={<ProductDetailsPage />} />
-
         {/* Cart */}
         <Route path="/cart" element={<CartPage />} />
+
+        <Route path="/checkout" element={<CheckoutPage />} />
+
+        <Route path="/orders" element={<OrdersPage />} />
 
         {/* Protected Dashboard */}
         <Route

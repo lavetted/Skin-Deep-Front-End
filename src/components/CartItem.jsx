@@ -6,11 +6,14 @@ function CartItem({ item }) {
 
   return (
     <div style={{ borderBottom: "1px solid gray", padding: "10px" }}>
-      <img src={item.product.image} width="80" />
+      <img
+        src={item.product?.image || "https://placehold.co/200"}
+        alt={item.product?.name}
+      />
 
-      <h3>{item.product.name}</h3>
+      <h3>{item.product?.name}</h3>
 
-      <p>${item.product.price}</p>
+      <p>${item.product?.price}</p>
 
       <input
         type="number"
