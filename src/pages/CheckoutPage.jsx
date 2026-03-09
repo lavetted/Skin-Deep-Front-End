@@ -11,12 +11,11 @@ function CheckoutPage() {
   }, 0);
 
   const handleCheckout = async () => {
-    await API.post("/orders", {
-      shippingAddress: {
-        address,
-      },
+    const res = await API.post("/payment/create-checkout-session", {
+      cartItems: items,
     });
-    alert("Order placed successfully!");
+
+    window.location.href = res.data.url;
   };
 
   return (
@@ -40,7 +39,7 @@ function CheckoutPage() {
 
       <h2>Total: ${total}</h2>
 
-      <button onClick={handleCheckout}>Place Order</button>
+      <button onClick={handleCheckout}>Checkout with Stripe</button>
     </div>
   );
 }

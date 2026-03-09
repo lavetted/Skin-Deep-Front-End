@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import CheckoutPage from "./pages/CheckoutPage.jsx";
 import OrdersPage from "./pages/OrdersPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
+import RegisterPage from "./pages/RegisterPage.jsx";
 import "./App.css";
 
 function App() {
@@ -42,6 +43,8 @@ function App() {
         <Route path="/checkout" element={<CheckoutPage />} />
 
         <Route path="/orders" element={<OrdersPage />} />
+
+        <Route path="/register" element={<RegisterPage />} />
 
         {/* Protected Dashboard */}
         <Route

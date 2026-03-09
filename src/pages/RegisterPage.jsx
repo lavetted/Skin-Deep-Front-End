@@ -19,6 +19,8 @@ function RegisterPage() {
         password,
       });
 
+      alert("Account created! Please login.");
+
       // auto login using returned token
       localStorage.setItem("token", res.data.token);
 
@@ -30,17 +32,26 @@ function RegisterPage() {
 
   return (
     <form onSubmit={handleRegister}>
-      <input placeholder="Name" onChange={(e) => setName(e.target.value)} />
-
-      <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+      <input
+        required
+        placeholder="Name"
+        onChange={(e) => setName(e.target.value)}
+      />
 
       <input
+        required
+        placeholder="Email"
+        onChange={(e) => setEmail(e.target.value)}
+      />
+
+      <input
+        required
         type="password"
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <button>Register</button>
+      <button type="submit">Register</button>
     </form>
   );
 }

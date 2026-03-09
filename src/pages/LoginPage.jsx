@@ -1,58 +1,88 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import API from "../services/api.jsx";
 
 function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      navigate("/products");
-    }
-  }, []);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await API.post("/auth/login", {
+      const response = await API.post("/auth/login", {
         email,
         password,
       });
 
-      localStorage.setItem("token", res.data.token);
+      // save token
+      localStorage.setItem("token", response.data.token);
 
+      // redirect after login
       navigate("/products");
-    } catch (error) {
-      console.error("Login failed", error);
-      alert("Invalid login");
+    } catch (err) {
+      alert("Invalid email or password");
     }
   };
 
   return (
-    <>
-      <h1>Login</h1>
+    <div
+      style={{
+        maxWidth: "400px",
+        margin: "60px auto",
+        padding: "30px",
+        border: "1px solid #ccc",
+        borderRadius: "8px",
+      }}
+    >
+      <h2 style={{ textAlign: "center" }}>Login</h2>
 
-      <form onSubmit={handleLogin}>
+      <form
+        onSubmit={handleLogin}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "15px",
+        }}
+      >
         <input
           type="email"
-          placeholder="email"
+          placeholder="Email"
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
+          style={{ padding: "10px" }}
         />
 
         <input
           type="password"
-          placeholder="password"
+          placeholder="Password"
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
+          style={{ padding: "10px" }}
         />
 
-        <button type="submit">Login</button>
+        <button
+          type="submit"
+          style={{
+            padding: "12px",
+            backgroundColor: "black",
+            color: "white",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          Login
+        </button>
       </form>
-    </>
+
+      <p style={{ marginTop: "20px", textAlign: "center" }}>
+        Don't have an account? <Link to="/register">Register</Link>
+      </p>
+    </div>
   );
 }
 
