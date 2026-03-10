@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import API from "../services/api.jsx";
 import { Link, useNavigate } from "react-router-dom";
+import "../App.css";
 
 function ProductsPage() {
   const [products, setProducts] = useState([]);
@@ -18,7 +19,6 @@ function ProductsPage() {
   const handleAddToCart = async (productId) => {
     try {
       await API.post("/cart", { productId });
-
       alert("Added to cart!");
     } catch (err) {
       alert("Please login first.");
@@ -27,30 +27,29 @@ function ProductsPage() {
   };
 
   return (
-    <div>
-      <h1>All Products</h1>
+    <div className="products-container">
+      <h1 className="products-title">Products</h1>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "20px",
-        }}
-      >
+      <div className="products-grid">
         {Array.isArray(products) &&
           products.map((product) => (
-            <div
-              key={product._id}
-              style={{ border: "1px solid #ccc", padding: "10px" }}
-            >
+            <div key={product._id} className="product-card">
               <Link to={`/products/${product._id}`}>
-                <img src={product.imageUrl} width="150" />
+                <img
+                  src={product.imageUrl}
+                  alt={product.name}
+                  className="product-image"
+                />
+
                 <h3>{product.name}</h3>
               </Link>
 
-              <p>${product.price}</p>
+              <p className="product-price">${product.price.toFixed(2)}</p>
 
-              <button onClick={() => handleAddToCart(product._id)}>
+              <button
+                className="add-cart-btn"
+                onClick={() => handleAddToCart(product._id)}
+              >
                 Add to Cart
               </button>
             </div>

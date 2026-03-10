@@ -1,28 +1,34 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext.jsx";
+import "../App.css";
 
 function CartItem({ item }) {
   const { updateQuantity, removeFromCart } = useContext(CartContext);
 
   return (
-    <div style={{ borderBottom: "1px solid gray", padding: "10px" }}>
+    <div className="cart-item">
       <img
-        src={item.product?.image || "https://placehold.co/200"}
+        className="cart-item-image"
+        src={item.product?.imageUrl || "https://placehold.co/200"}
         alt={item.product?.name}
       />
 
-      <h3>{item.product?.name}</h3>
-
-      <p>${item.product?.price}</p>
+      <div className="cart-item-info">
+        <h3>{item.product?.name}</h3>
+        <p className="cart-item-price">${item.product?.price}</p>
+      </div>
 
       <input
+        className="cart-item-qty"
         type="number"
         value={item.quantity}
         min="1"
         onChange={(e) => updateQuantity(item._id, Number(e.target.value))}
       />
 
-      <button onClick={() => removeFromCart(item._id)}>Remove</button>
+      <button className="remove-btn" onClick={() => removeFromCart(item._id)}>
+        Remove
+      </button>
     </div>
   );
 }

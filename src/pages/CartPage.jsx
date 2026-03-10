@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext.jsx";
 import CartItem from "../components/CartItem.jsx";
+import "../App.css";
 
 function CartPage() {
   const { items } = useContext(CartContext);
@@ -20,103 +21,39 @@ function CartPage() {
     0,
   );
 
-  if (!items.length) return <p>Your cart is empty</p>;
+  if (!items.length) return <p className="empty-cart">Your cart is empty</p>;
 
   return (
-    <div>
-      <h1>Your Cart</h1>
+    <div className="cart-container">
+      <h1 className="cart-title">Your Cart</h1>
 
-      {items.map((item) => (
-        <CartItem key={item._id} item={item} />
-      ))}
+      <div className="cart-layout">
+        {/* Cart Items */}
+        <div className="cart-items">
+          {items.map((item) => (
+            <CartItem key={item._id} item={item} />
+          ))}
+        </div>
 
-      <h2>Total: ${total.toFixed(2)}</h2>
+        {/* Order Summary */}
+        <div className="cart-summary">
+          <h2>Order Summary</h2>
 
-      <button
-        onClick={() => navigate("/checkout")}
-        style={{
-          padding: "12px",
-          backgroundColor: "black",
-          color: "white",
-          border: "none",
-          cursor: "pointer",
-          marginTop: "20px",
-        }}
-      >
-        Proceed to Checkout
-      </button>
+          <div className="summary-row">
+            <span>Total</span>
+            <span>${total.toFixed(2)}</span>
+          </div>
+
+          <button
+            className="checkout-btn"
+            onClick={() => navigate("/checkout")}
+          >
+            Proceed to Checkout
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: "flex",
-    gap: "20px",
-    padding: "40px",
-    maxWidth: "1200px",
-    margin: "auto",
-  },
-
-  cartItems: {
-    flex: 3,
-    background: "#fff",
-    padding: "20px",
-    borderRadius: "8px",
-  },
-
-  cartItem: {
-    display: "flex",
-    borderBottom: "1px solid #ddd",
-    padding: "20px 0",
-    alignItems: "center",
-  },
-
-  image: {
-    width: "120px",
-    marginRight: "20px",
-  },
-
-  details: {
-    flex: 1,
-  },
-
-  controls: {
-    marginTop: "10px",
-  },
-
-  remove: {
-    marginLeft: "20px",
-    color: "red",
-    background: "none",
-    border: "none",
-    cursor: "pointer",
-  },
-
-  price: {
-    fontWeight: "bold",
-    fontSize: "18px",
-  },
-
-  checkout: {
-    flex: 1,
-    background: "#fff",
-    padding: "20px",
-    borderRadius: "8px",
-    height: "fit-content",
-    border: "1px solid #ddd",
-  },
-
-  checkoutBtn: {
-    marginTop: "20px",
-    width: "100%",
-    padding: "12px",
-    background: "#FFD814",
-    border: "1px solid #FCD200",
-    borderRadius: "8px",
-    fontWeight: "bold",
-    cursor: "pointer",
-  },
-};
 
 export default CartPage;
