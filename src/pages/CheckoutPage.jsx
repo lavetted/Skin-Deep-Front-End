@@ -44,58 +44,60 @@ function CheckoutPage() {
   };
 
   return (
-     <div className="checkout-container">
+    <div className="checkout-container">
       <h1 className="checkout-title">Checkout</h1>
 
       <div className="checkout-grid">
-
-        {/* Shipping Section */}
+        {/* Shipping */}
         <div className="shipping-section">
+          <h2>Shipping Information</h2>
 
-      <h2>Enter your shipping information.</h2>
+          <input
+            name="address"
+            placeholder="Street Address"
+            value={shipping.address}
+            onChange={handleChange}
+          />
 
-      <input
-        name="address"
-        placeholder="Street Address"
-        value={shipping.address}
-        onChange={handleChange}
-      />
+          <input
+            name="city"
+            placeholder="City"
+            value={shipping.city}
+            onChange={handleChange}
+          />
 
-      <input
-        name="city"
-        placeholder="City"
-        value={shipping.city}
-        onChange={handleChange}
-      />
+          <input
+            name="state"
+            placeholder="State"
+            value={shipping.state}
+            onChange={handleChange}
+          />
 
-      <input
-        name="state"
-        placeholder="State"
-        value={shipping.state}
-        onChange={handleChange}
-      />
-
-      <input
-        name="zip"
-        placeholder="ZIP Code"
-        value={shipping.zip}
-        onChange={handleChange}
-      />
-
-      <h2>Order Summary</h2>
-
-      {items.map((item) => (
-        <div key={item._id}>
-          <p>{item.product.name}</p>
-          <p>Quantity: {item.quantity}</p>
-        </div>
-      ))}
-
-      <h2>Total: ${total}</h2>
-
-      <button onClick={handleCheckout}>Checkout with Stripe</button>
+          <input
+            name="zip"
+            placeholder="ZIP Code"
+            value={shipping.zip}
+            onChange={handleChange}
+          />
         </div>
 
+        {/* Order Summary */}
+        <div className="order-summary">
+          <h2>Order Summary</h2>
+
+          {items.map((item) => (
+            <div key={item._id} className="order-item">
+              <p>{item.product.name}</p>
+              <p>Qty: {item.quantity}</p>
+            </div>
+          ))}
+
+          <h3 className="order-total">Total: ${total}</h3>
+
+          <button className="checkout-btn" onClick={handleCheckout}>
+            Checkout with Stripe
+          </button>
+        </div>
       </div>
     </div>
   );

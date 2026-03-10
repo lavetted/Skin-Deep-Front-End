@@ -1,5 +1,6 @@
 html,
 body {
+
   margin: 0;
   padding: 0;
   height: 100%;
@@ -323,51 +324,66 @@ body {
 /* Checkout Page */
 
 .checkout-container {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: auto;
   padding: 40px;
 }
 
 .checkout-title {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .checkout-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+}
+
+/* SHIPPING */
+
+.shipping-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 15px;
 }
 
 .shipping-section input {
-  display: block;
-  width: 100%;
   padding: 12px;
-  margin-bottom: 15px;
   border-radius: 6px;
   border: 1px solid #ccc;
+  font-size: 14px;
 }
 
+/* ORDER SUMMARY */
+
 .order-summary {
-  background: #f9f9f9;
-  padding: 20px;
+  background: transparent;
+  padding: 25px;
   border-radius: 8px;
+  height: fit-content;
 }
 
 .order-item {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  color: whitesmoke;
+  text-shadow: black 0px 0px 10px;
+  font-weight: 600;
+}
+
+.order-total {
+  margin-top: 20px;
 }
 
 .checkout-btn {
   width: 100%;
-  padding: 14px;
   margin-top: 20px;
-  border: none;
+  padding: 14px;
   background: black;
   color: white;
-  font-size: 16px;
+  border: none;
   border-radius: 6px;
   cursor: pointer;
 }
