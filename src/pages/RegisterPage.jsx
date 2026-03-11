@@ -20,7 +20,7 @@ function RegisterPage() {
         password,
       });
 
-      alert("Account created! Please login.");
+      alert("Account created! Shopping awaits...");
 
       localStorage.setItem("token", res.data.token);
 

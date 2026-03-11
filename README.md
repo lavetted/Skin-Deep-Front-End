@@ -109,24 +109,6 @@ src
 
 ---
 
-## API Integration
-
-The frontend communicates with a backend API using Axios.
-
-Example API configuration:
-
-```javascript
-import axios from "axios";
-
-const API = axios.create({
-  baseURL: "https://your-backend-url.onrender.com/api"
-});
-
-export default API;
-```
-
----
-
 ## Environment Variables
 
 You may optionally configure:
