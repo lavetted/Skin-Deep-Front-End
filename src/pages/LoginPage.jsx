@@ -38,6 +38,7 @@ function LoginPage() {
         padding: "30px",
         border: "1px solid goldenrod",
         borderRadius: "8px",
+        marginTop: 200,
       }}
     >
       <h2 style={{ textAlign: "center" }}>Login</h2>
