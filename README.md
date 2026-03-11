@@ -107,15 +107,6 @@ src
 | Login           | User authentication             |
 | Register        | Create new account              |
 
----
-
-## Environment Variables
-
-You may optionally configure:
-
-```
-VITE_API_URL=https://your-backend-url.onrender.com/api
-```
 
 ---
 
