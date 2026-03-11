@@ -1,6 +1,7 @@
 import { useState } from "react";
 import API from "../services/api.jsx";
 import { useNavigate } from "react-router-dom";
+import "../App.css";
 
 function RegisterPage() {
   const [name, setName] = useState("");
@@ -21,7 +22,6 @@ function RegisterPage() {
 
       alert("Account created! Please login.");
 
-      // auto login using returned token
       localStorage.setItem("token", res.data.token);
 
       navigate("/products");
@@ -31,28 +31,32 @@ function RegisterPage() {
   };
 
   return (
-    <form onSubmit={handleRegister}>
-      <input
-        required
-        placeholder="Name"
-        onChange={(e) => setName(e.target.value)}
-      />
+    <div className="register-container">
+      <form className="register-form" onSubmit={handleRegister}>
+        <h1>Create Account</h1>
 
-      <input
-        required
-        placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
+        <input
+          required
+          placeholder="Name"
+          onChange={(e) => setName(e.target.value)}
+        />
 
-      <input
-        required
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <input
+          required
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-      <button type="submit">Register</button>
-    </form>
+        <input
+          required
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
   );
 }
 

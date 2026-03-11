@@ -30,10 +30,13 @@ function LoginPage() {
   return (
     <div
       style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
         maxWidth: "400px",
         margin: "60px auto",
         padding: "30px",
-        border: "1px solid #ccc",
+        border: "1px solid goldenrod",
         borderRadius: "8px",
       }}
     >
