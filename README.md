@@ -1,16 +1,170 @@
-# React + Vite
+# E-Commerce Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+😎 Link to: [Back-End](https://github.com/lavetted/Skin-Deep-Back-End)
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is the frontend for a full-stack e-commerce application. It allows users to browse products, view product details, add items to a shopping cart, and complete purchases using Stripe checkout.
 
-## React Compiler
+The application is built using **React** and communicates with a backend REST API to manage products, authentication, and cart functionality.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* User registration and login
+* Product browsing
+* Product detail pages
+* Add items to cart
+* Update or remove cart items
+* Checkout with Stripe
+* Shipping address form
+* Responsive UI layout
+* Protected routes for authenticated users
+
+---
+
+## Tech Stack
+
+* React
+* React Router
+* Axios
+* Context API (State Management)
+* CSS
+* Stripe Checkout
+
+---
+
+## Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/yourusername/your-repo.git
+cd frontend
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Start the development server
+
+```bash
+npm run dev
+```
+
+The application will run at:
+
+```
+http://localhost:5173
+```
+
+---
+
+## Project Structure
+
+```
+src
+│
+├── components
+│   ├── Navbar.jsx
+│   ├── CartItem.jsx
+│   ├── ProductCard.jsx
+│
+├── pages
+│   ├── ProductsPage.jsx
+│   ├── ProductDetailsPage.jsx
+│   ├── CartPage.jsx
+│   ├── CheckoutPage.jsx
+│   ├── LoginPage.jsx
+│   ├── RegisterPage.jsx
+│   ├── OrderPage.jsx
+│   ├── Homepage.jsx
+│
+├── context
+│   └── CartContext.jsx
+│
+├── services
+│   └── api.jsx
+│
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+## Application Pages
+
+| Page            | Description                     |
+| --------------- | ------------------------------- |
+| Home / Products | Displays available products     |
+| Product Details | Shows product information       |
+| Cart            | Displays items added to cart    |
+| Checkout        | Shipping form and order summary |
+| Login           | User authentication             |
+| Register        | Create new account              |
+
+---
+
+## API Integration
+
+The frontend communicates with a backend API using Axios.
+
+Example API configuration:
+
+```javascript
+import axios from "axios";
+
+const API = axios.create({
+  baseURL: "https://your-backend-url.onrender.com/api"
+});
+
+export default API;
+```
+
+---
+
+## Environment Variables
+
+You may optionally configure:
+
+```
+VITE_API_URL=https://your-backend-url.onrender.com/api
+```
+
+---
+
+## Deployment
+
+The frontend can be deployed using platforms such as:
+
+* Netlify
+* Render
+* Vercel
+
+For production deployment:
+
+```bash
+npm run build
+```
+
+This will generate the `dist` folder for hosting.
+
+---
+
+## Future Improvements
+
+* Product search and filtering
+* User order history
+* Quantity selectors in product pages
+* Improved mobile responsiveness
+* Wishlist functionality
+
+---
+
+## Author
+
+Lavette D. ❤️
