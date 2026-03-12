@@ -4,7 +4,7 @@ import ProductsPage from "./pages/ProductsPage.jsx";
 import ProductDetailsPage from "./pages/ProductDetailsPage.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import Navbar from "./components/Navbar.jsx";
-import ProtectedRoute from "./routes/protectedRoute.jsx";
+import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import CheckoutPage from "./pages/CheckoutPage.jsx";
 import OrdersPage from "./pages/OrdersPage.jsx";
